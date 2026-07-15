@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Boat Pro — Issue #1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #0f1923;
+    --sea:       #1a3a4a;
+    --horizon:   #2e6b8a;
+    --salt:      #f5f2ec;
+    --foam:      #ffffff;
+    --rope:      #c8a96e;
+    --rust:      #b84c2b;
+    --mist:      #8fa8b4;
+    --rule:      #d4cfc6;
+  }
+
+  body {
+    background: var(--salt);
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  .wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--sea);
+    color: var(--foam);
+    padding: 36px 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rope) 0%, var(--rust) 50%, var(--rope) 100%);
+  }
+
+  .masthead-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 10px;
+  }
+
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--foam);
+  }
+
+  .masthead h1 span {
+    color: var(--rope);
+  }
+
+  .masthead-meta {
+    margin-top: 18px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .masthead-meta span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--mist);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── HERO HOOK ── */
+  .hero {
+    background: var(--ink);
+    padding: 44px 40px;
+    position: relative;
+  }
+
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rope);
+    margin-bottom: 16px;
+  }
+
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    color: var(--foam);
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  .hero h2 em {
+    color: var(--rope);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    margin-top: 14px;
+    color: var(--mist);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ── BODY SECTIONS ── */
+  .section {
+    background: var(--foam);
+    padding: 36px 40px;
+    margin-top: 3px;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--horizon);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--sea);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .section p {
+    color: #2d3748;
+    font-size: 15.5px;
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+
+  .section p:last-child { margin-bottom: 0; }
+
+  /* ── CALLOUT / INSIGHT BOX ── */
+  .insight {
+    background: var(--salt);
+    border-left: 3px solid var(--rope);
+    padding: 18px 22px;
+    margin: 22px 0;
+    font-style: italic;
+    color: var(--sea);
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    margin: 18px 0;
+  }
+
+  .checklist li {
+    padding: 10px 0 10px 32px;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+    color: #2d3748;
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .checklist li::before {
+    content: '⬡';
+    position: absolute;
+    left: 0;
+    color: var(--horizon);
+    font-size: 14px;
+    top: 11px;
+  }
+
+  .checklist li strong {
+    color: var(--sea);
+    font-weight: 600;
+  }
+
+  /* ── PRO TIP ── */
+  .pro-tip {
+    background: linear-gradient(135deg, var(--sea) 0%, var(--horizon) 100%);
+    padding: 24px 28px;
+    margin: 22px 0;
+    color: var(--foam);
+    border-radius: 2px;
+  }
+
+  .pro-tip-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--rope);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .pro-tip p {
+    font-size: 15px;
+    color: var(--foam) !important;
+    margin: 0 !important;
+    line-height: 1.6;
+  }
+
+  /* ── DIVIDER ── */
+  .rope-divider {
+    text-align: center;
+    padding: 18px 0;
+    background: var(--foam);
+    color: var(--rule);
+    font-size: 22px;
+    letter-spacing: 8px;
+    margin-top: 3px;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--rust);
+    padding: 36px 40px;
+    margin-top: 3px;
+    text-align: center;
+  }
+
+  .cta-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--foam);
+    margin-bottom: 10px;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    margin-bottom: 22px;
+    line-height: 1.6;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--foam);
+    color: var(--rust);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    padding: 14px 32px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+  }
+
+  .cta-btn:hover { background: var(--salt); }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 28px 40px;
+    background: var(--sea);
+    margin-top: 3px;
+    text-align: center;
+  }
+
+  .footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--mist);
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+  }
+
+  .footer .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--rope);
+    display: block;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .masthead, .hero, .section, .cta-section, .footer { padding-left: 24px; padding-right: 24px; }
+    .masthead-meta { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-eyebrow">Free Issue · Vol. 1 · No. 1</div>
+    <h1>The Boat <span>Pro</span></h1>
+    <div class="masthead-meta">
+      <span>⚓ Maritime Ops &amp; Seamanship</span>
+      <span>◈ For Serious Boaters</span>
+      <span>▸ Est. 2025</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">This Issue</div>
+    <h2>What the Marina Manager<br/>Sees That You <em>Never</em> Do</h2>
+    <p class="hero-sub">Twenty-five years of standing on docks, running fleets, and holding a USCG Master license taught me one thing: the gap between a confident boater and a safe one is almost always invisible — until it isn't.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-label">Feature</div>
+    <h3>The Five Things We See Before You Even Leave the Slip</h3>
+    <p>I've managed marinas on the Chesapeake Bay and now on Lake Powell. The geography changes. The problems don't. Every season, the same patterns show up on vessels run by otherwise intelligent, experienced people.</p>
+    <p>Here's what the dock staff is quietly noticing as you pull out — and what separates a vessel that comes back from one that calls for a tow.</p>
+
+    <ul class="checklist">
+      <li><strong>Lines coiled wrong.</strong> Figure-eight on a cleat is not decorative — it's the difference between a dock line that holds under load and one that jams when you need to release fast. We see this daily. In a blow, it matters.</li>
+      <li><strong>No float plan filed.</strong> On a busy weekend, three vessels in my marina will leave without telling anyone where they're going or when they're expected back. This is a search-and-rescue problem waiting to happen. It costs nothing to file one.</li>
+      <li><strong>Engine room skipped.</strong> Pre-departure engine checks take four minutes. Bilge inspection, belt tension, raw water strainer — four minutes. Most skippers go straight to the helm. Most breakdowns we respond to are bilge pump failures or overheating from a clogged strainer.</li>
+      <li><strong>Crew not briefed.</strong> Your crew doesn't know where the throwable PFD is. They don't know what to do if you go overboard. You've been on this boat for years. They haven't. Brief them before you leave — every time.</li>
+      <li><strong>Fuel dock math done wrong.</strong> People underestimate the rule of thirds like it's a suggestion. One third out, one third back, one third reserve. On Lake Powell, the next fuel stop can be 40 miles away. This isn't optional math.</li>
+    </ul>
+
+    <div class="insight">
+      "The most dangerous skipper isn't the reckless one. It's the competent one who stopped paying attention because nothing bad has happened yet."
+    </div>
+
+    <p>Complacency is the real enemy out there. The sea — and the lake — are indifferent. They don't care how many years you've been at it.</p>
+  </div>
+
+  <div class="rope-divider">— ⚓ —</div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-label">Ops Deep Dive</div>
+    <h3>The Float Plan Nobody Uses (But Should)</h3>
+    <p>A float plan is three minutes of your time that could direct a Coast Guard search pattern directly to you. Here's exactly what to put in one:</p>
+
+    <ul class="checklist">
+      <li><strong>Vessel name, type, registration number,</strong> and hull color</li>
+      <li><strong>Departure point and intended destination</strong> with waypoints if offshore</li>
+      <li><strong>Expected return time</strong> — and what to do if you're 2 hours overdue</li>
+      <li><strong>Number of people aboard,</strong> names, and emergency contacts</li>
+      <li><strong>Safety equipment on board:</strong> EPIRBs, flares, life raft, VHF channel monitored</li>
+      <li><strong>Who has the plan:</strong> marina office, a shoreside contact, not just your phone</li>
+    </ul>
+
+    <div class="pro-tip">
+      <div class="pro-tip-label">Pro Tip</div>
+      <p>Leave a printed float plan with the marina office AND text a photo of it to someone ashore. If your phone goes in the water, that photo still exists. The USCG has a free float plan template at floatplancentral.com — use it, then customize it for your vessel.</p>
+    </div>
+
+    <p>I've called in float plan activations. It's a surreal, slow-motion emergency. The outcome almost always depends on how much information we have at the start. Give us everything.</p>
+  </div>
+
+  <div class="rope-divider">— ⚓ —</div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-label">Quick Seamanship</div>
+    <h3>The Four-Minute Pre-Departure Engine Check</h3>
+    <p>You don't need a checklist the size of a legal brief. You need a habit. This one takes four minutes and catches 80% of the mechanical problems that generate service calls.</p>
+
+    <ul class="checklist">
+      <li><strong>Minute 1 — Bilge:</strong> Look, don't just glance. Is there water? Oil sheen? Run the bilge pump manually and watch what comes out.</li>
+      <li><strong>Minute 2 — Belts &amp; hoses:</strong> Squeeze the raw water hose. Press each belt. Look for cracking, glazing, fraying. A belt that looks fine can be one hot day from snapping.</li>
+      <li><strong>Minute 3 — Raw water strainer:</strong> Open it. Clear any debris. This is the single most common cause of overheating I see at the dock.</li>
+      <li><strong>Minute 4 — Oil level + start &amp; listen:</strong> Check the dipstick. Fire the engine. Listen for 30 seconds before engaging gear. Knocks, rattles, and exhaust smoke tell you a lot before you leave the slip.</li>
+    </ul>
+
+    <p>Build this into your departure ritual until it's reflex. Your mechanic will have less work. You'll have fewer stories that start with "so we were drifting about three miles offshore..."</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h3>Want the Full Deep Dive Every Week?</h3>
+    <p>Paid subscribers get weekly ops guides, DIY seamanship breakdowns, regulatory intel, and gear reviews written by someone who actually runs vessels for a living — not a content farm.</p>
+    <a class="cta-btn" href="#">Become a Founding Member — $79/year</a>
+    <p style="margin-top:16px; font-size:13px; color:rgba(255,255,255,0.65);">First 50 subscribers lock in the founding rate. Cancel anytime.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="brand">The Boat Pro</span>
+    <p>
+      Written by a USCG 25-Ton Master with 25+ years in maritime operations.<br/>
+      Lake Powell · Chesapeake Bay · Wherever the water takes us.<br/><br/>
+      You're receiving this because you care about doing it right.<br/>
+      Unsubscribe · Manage preferences · Forward to a fellow skipper
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

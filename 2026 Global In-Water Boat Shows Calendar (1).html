@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boat Pro USA | 2026 Global In-Water Boat Shows Calendar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bp-navy: #0b1d3a;
+      --bp-gold: #d4af37;
+      --bp-white: #ffffff;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bp-white); }
+    header { background: var(--bp-navy); color: var(--bp-white); }
+    footer { background: #f3f4f6; color: #555; }
+
+    .month-btn {
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+    .month-btn:hover {
+      background-color: #e5e7eb;
+      transform: translateY(-1px);
+    }
+    .active-tab {
+      background-color: var(--bp-navy);
+      color: var(--bp-white);
+      border-color: var(--bp-gold);
+    }
+    .active-tab::after {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      bottom: -3px;
+      height: 3px;
+      background: var(--bp-gold);
+      border-radius: 9999px;
+      transform: translateY(4px);
+      animation: bp-underline 0.25s ease-out forwards;
+    }
+    @keyframes bp-underline {
+      from { opacity: 0; transform: translateY(6px) scaleX(0.5); }
+      to   { opacity: 1; transform: translateY(0) scaleX(1); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="text-center py-6 shadow-md">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+      <img src="boat_pro_logo.png" alt="Boat Pro Logo" class="h-16 w-auto" />
+      <div>
+        <h1 class="text-3xl font-extrabold tracking-wide">
+          Boat Pro USA | 2026 In-Water Boat Shows Calendar
+        </h1>
+        <p class="text-lg text-[var(--bp-gold)]">
+          Your world guide to premier in-water boating events
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto py-10 px-4">
+    <!-- Month Tabs + Download Button -->
+    <div class="flex flex-wrap justify-center items-center gap-4 mb-8">
+      <div id="monthTabs" class="flex flex-wrap justify-center gap-2"></div>
+      <button
+        id="downloadBtn"
+        class="px-4 py-2 rounded-md border border-[var(--bp-gold)]
+               text-[var(--bp-navy)] font-medium
+               hover:bg-[var(--bp-gold)] hover:text-white transition"
+      >
+        Download CSV for this month
+      </button>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto bg-white shadow-lg rounded-lg border border-gray-200">
+      <table class="min-w-full text-sm">
+        <thead class="bg-[var(--bp-navy)] text-white uppercase text-xs">
+          <tr>
+            <th class="px-4 py-3 text-left">Dates</th>
+            <th class="px-4 py-3 text-left">Event</th>
+            <th class="px-4 py-3 text-left">City</th>
+            <th class="px-4 py-3 text-left">Country</th>
+            <th class="px-4 py-3 text-left">Venue</th>
+            <th class="px-4 py-3 text-left">Region</th>
+          </tr>
+        </thead>
+        <tbody id="showBody" class="divide-y divide-gray-100"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 mt-10 text-sm">
+    <p>
+      © 2026 <span class="text-[var(--bp-gold)] font-semibold">Boat Pro USA</span>
+      — Global Boating Events Calendar
+    </p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // ? Your Google Apps Script JSON Feed URL
+    const sheetUrl = "https://script.google.com/macros/s/AKfycbzogD9kHgPStZCB47ku7_RbUQKvuVViIIjEC5e6Cfc/exec";
+
+    const monthNames = [
+      "January","February","March","April","May","June",
+      "July","August","September","October","November","December"
+    ];
+
+    const tabs = document.getElementById("monthTabs");
+    let allShows = [];
+    let currentMonthIndex = 0;
+    let currentMonthData = [];
+
+    // Build month buttons
+    monthNames.forEach((m, i) => {
+      const btn = document.createElement("button");
+      btn.textContent = m;
+      btn.className =
+        "month-btn px-4 py-2 border border-gray-300 rounded-md transition";
+      btn.onclick = () => {
+        document.querySelectorAll("#monthTabs button")
+          .forEach(b => b.classList.remove("active-tab"));
+        btn.classList.add("active-tab");
+        renderTable(i);
+      };
+      tabs.appendChild(btn);
+    });
+
+    async function loadData() {
+      try {
+        const res = await fetch(sheetUrl);
+        allShows = await res.json();
+        renderTable(0); // January by default
+        tabs.firstChild.classList.add("active-tab");
+      } catch (e) {
+        console.error("Error loading data", e);
+        document.getElementById("showBody").innerHTML =
+          `<tr><td colspan="6" class="text-center py-6 text-red-600">
+             Unable to load data. Check your Google Sheet link.
+           </td></tr>`;
+      }
+    }
+
+    function renderTable(monthIndex) {
+      currentMonthIndex = monthIndex;
+      const body = document.getElementById("showBody");
+      body.innerHTML = "";
+
+      const filtered = allShows.filter(s => {
+        const d = new Date(s["Start Date"]);
+        return d.getMonth() === monthIndex;
+      });
+
+      filtered.sort(
+        (a,b) => new Date(a["Start Date"]) - new Date(b["Start Date"])
+      );
+
+      currentMonthData = filtered;
+
+      filtered.forEach(s => {
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-blue-50";
+        tr.innerHTML = `
+          <td class="px-4 py-2">${s["Start Date"]} ? ${s["End Date"]}</td>
+          <td class="px-4 py-2 font-semibold text-[var(--bp-navy)]">${s["Event"]}</td>
+          <td class="px-4 py-2">${s["City"]}</td>
+          <td class="px-4 py-2">${s["Country"]}</td>
+          <td class="px-4 py-2">${s["Venue"]}</td>
+          <td class="px-4 py-2 text-[var(--bp-gold)] font-medium">${s["Region"]}</td>
+        `;
+        body.appendChild(tr);
+      });
+
+      if (filtered.length === 0) {
+        body.innerHTML =
+          `<tr><td colspan="6" class="text-center py-6 text-gray-500">
+             No shows listed for this month.
+           </td></tr>`;
+      }
+    }
+
+    function downloadCurrentMonthCsv() {
+      if (!currentMonthData || currentMonthData.length === 0) {
+        alert("No shows for this month to download.");
+        return;
+      }
+
+      const headers = ["Start Date","End Date","Event","City","Country","Venue","Region"];
+      const csvRows = [];
+      csvRows.push(headers.join(","));
+
+      currentMonthData.forEach(s => {
+        const row = headers.map(h => {
+          const val = s[h] != null ? String(s[h]) : "";
+          return `"${val.replace(/"/g, '""')}"`;
+        }).join(",");
+        csvRows.push(row);
+      });
+
+      const blob = new Blob([csvRows.join("\n")], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const monthName = monthNames[currentMonthIndex];
+      a.href = url;
+      a.download = `BoatPro_2026_${monthName}_boat_shows.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById("downloadBtn").addEventListener("click", downloadCurrentMonthCsv);
+
+    loadData();
+  </script>
+</body>
+</html>

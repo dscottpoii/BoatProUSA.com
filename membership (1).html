@@ -1,0 +1,399 @@
+﻿import React, { useState } from 'react';
+import { Download, CheckCircle, Anchor, Shield, Wrench, Calendar, X, Mail, Star, Crown } from 'lucide-react';
+
+export default function YachtLeadMagnetAd() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [showMembership, setShowMembership] = useState(false);
+
+  const handleSubmit = () => {
+    if (firstName && lastName && email) {
+      setSubmitted(true);
+      setTimeout(() => {
+        setShowMembership(true);
+      }, 1500);
+    }
+  };
+
+  const handleMembershipSelect = (tier) => {
+    alert(`Thank you for choosing ${tier}! Redirecting to checkout...`);
+    // In real implementation, this would redirect to payment processor
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 p-4 flex items-center justify-center">
+      <div className="max-w-2xl w-full">
+        
+        {/* Main Ad Card */}
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+          
+          {/* Hero Section */}
+          <div className="relative bg-gradient-to-r from-blue-600 to-blue-800 p-8 text-white">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-32 -mt-32"></div>
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-4">
+                <img 
+                  src="https://drive.google.com/uc?id=15BWC9N-IcpY8h8ToSiO8iPV8T2jH8cgf&export=download" 
+                  alt="Boat Pro Logo" 
+                  className="w-16 h-16 bg-white rounded-lg p-2"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextElementSibling.style.display = 'flex';
+                  }}
+                />
+                <Anchor className="w-10 h-10" style={{display: 'none'}} />
+                <div>
+                  <h3 className="text-sm font-semibold tracking-wider uppercase">Boat Pro USA</h3>
+                  <p className="text-xs text-blue-200">Boat Pro Newsletter</p>
+                </div>
+              </div>
+              
+              <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-3">
+                FREE Download:<br />Complete Spring Dewinterization Guide
+              </h1>
+              
+              <p className="text-lg text-blue-100 mb-4">
+                The Professional Yacht Owner's System for a Perfect Launch Season
+              </p>
+              
+              <div className="inline-block bg-yellow-400 text-slate-900 px-4 py-2 rounded-full text-sm font-bold">
+                ⚡ Limited Time: Instant Access
+              </div>
+            </div>
+          </div>
+
+          {/* What's Inside Section */}
+          <div className="p-8 bg-gradient-to-b from-slate-50 to-white">
+            <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">
+              What You'll Discover Inside:
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              <div className="flex gap-3 items-start">
+                <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+                  <Calendar className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-slate-800 mb-1">4-Week Launch Timeline</h3>
+                  <p className="text-sm text-slate-600">Step-by-step scheduling to avoid costly rush jobs</p>
+                </div>
+              </div>
+
+              <div className="flex gap-3 items-start">
+                <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+                  <Wrench className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-slate-800 mb-1">Complete Systems Checklist</h3>
+                  <p className="text-sm text-slate-600">Engine, electrical, plumbing - nothing overlooked</p>
+                </div>
+              </div>
+
+              <div className="flex gap-3 items-start">
+                <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+                  <Shield className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-slate-800 mb-1">Safety Compliance Guide</h3>
+                  <p className="text-sm text-slate-600">Every required item for Coast Guard compliance</p>
+                </div>
+              </div>
+
+              <div className="flex gap-3 items-start">
+                <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+                  <CheckCircle className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-slate-800 mb-1">Troubleshooting Solutions</h3>
+                  <p className="text-sm text-slate-600">Quick fixes for the 5 most common launch issues</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bonus Section */}
+            <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-yellow-300 rounded-xl p-4 mb-6">
+              <p className="text-sm font-bold text-amber-900 mb-2">🎁 BONUS INCLUDED:</p>
+              <p className="text-sm text-amber-800">
+                Professional yacht delivery route planning consultation ($500 value)
+              </p>
+            </div>
+
+            {/* Social Proof */}
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 rounded-r-lg">
+              <p className="text-sm text-slate-700 italic mb-2">
+                "This guide saved me $3,000 in unnecessary marina services. Everything's organized perfectly!"
+              </p>
+              <p className="text-xs font-semibold text-slate-600">— Michael T., 58' Ocean Alexander Owner</p>
+            </div>
+
+            {/* Lead Capture Form */}
+            {!submitted ? (
+              <div className="space-y-4">
+                <div className="text-center mb-4">
+                  <p className="text-lg font-bold text-slate-800 mb-2">
+                    Get Your Free Guide Now
+                  </p>
+                  <p className="text-sm text-slate-600">
+                    Enter your details for instant download + Boat Pro Newsletter tips
+                  </p>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="First Name"
+                    className="w-full px-4 py-4 border-2 border-slate-300 rounded-xl focus:outline-none focus:border-blue-500 text-lg"
+                    required
+                  />
+                  <input
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder="Last Name"
+                    className="w-full px-4 py-4 border-2 border-slate-300 rounded-xl focus:outline-none focus:border-blue-500 text-lg"
+                    required
+                  />
+                </div>
+                
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your.email@example.com"
+                  className="w-full px-4 py-4 border-2 border-slate-300 rounded-xl focus:outline-none focus:border-blue-500 text-lg"
+                  required
+                />
+                
+                <button
+                  onClick={handleSubmit}
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 text-lg"
+                >
+                  <Download className="w-6 h-6" />
+                  Download Free Guide Now
+                </button>
+                
+                <p className="text-xs text-center text-slate-500">
+                  🔒 Your information is secure. Unsubscribe anytime.
+                </p>
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-12 h-12 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-800 mb-2">Welcome, {firstName}!</h3>
+                <p className="text-slate-600">Your guide is on its way to {email}</p>
+              </div>
+            )}
+          </div>
+
+          {/* Trust Footer */}
+          <div className="bg-slate-100 px-8 py-6 border-t border-slate-200">
+            <div className="flex flex-wrap justify-center gap-6 text-xs text-slate-600">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Licensed & Insured</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>20+ Years Experience</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Professional Yacht Delivery</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Instagram-Style CTA */}
+        <div className="mt-6 text-center">
+          <p className="text-white text-sm mb-2">
+            📲 Link in bio or DM "GUIDE" for instant access
+          </p>
+          <p className="text-blue-300 text-xs">
+            #YachtLife #BoatOwner #YachtMaintenance #SpringLaunch #BoatProUSA
+          </p>
+        </div>
+      </div>
+
+      {/* Membership Popup Modal */}
+      {showMembership && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-3xl max-w-5xl w-full max-h-screen overflow-y-auto">
+            {/* Header */}
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 rounded-t-3xl">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h2 className="text-3xl font-bold mb-2">Unlock Premium Access</h2>
+                  <p className="text-blue-100">Choose the membership that fits your needs</p>
+                </div>
+                <button 
+                  onClick={() => setShowMembership(false)}
+                  className="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition-all"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* Membership Tiers */}
+            <div className="grid md:grid-cols-3 gap-6 p-8">
+              
+              {/* Deck Mate - Free */}
+              <div className="border-2 border-slate-200 rounded-2xl p-6 hover:border-blue-400 transition-all hover:shadow-lg">
+                <div className="text-center mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full mb-4">
+                    <Mail className="w-8 h-8 text-slate-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-800 mb-2">Deck Mate</h3>
+                  <div className="mb-4">
+                    <span className="text-4xl font-bold text-slate-800">FREE</span>
+                  </div>
+                  <p className="text-sm text-slate-600">Monthly Newsletter Only</p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Monthly newsletter with tips</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Seasonal maintenance reminders</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Exclusive deals & discounts</span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => handleMembershipSelect('Deck Mate')}
+                  className="w-full bg-slate-600 hover:bg-slate-700 text-white font-bold py-3 rounded-xl transition-all"
+                >
+                  Continue Free
+                </button>
+              </div>
+
+              {/* Officer Level - $24.99 */}
+              <div className="border-2 border-blue-500 rounded-2xl p-6 relative hover:shadow-2xl transition-all transform hover:scale-105">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold">
+                    POPULAR
+                  </span>
+                </div>
+                
+                <div className="text-center mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+                    <Star className="w-8 h-8 text-blue-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-800 mb-2">Officer Level</h3>
+                  <div className="mb-2">
+                    <span className="text-4xl font-bold text-blue-600">$24.99</span>
+                    <span className="text-slate-600">/month</span>
+                  </div>
+                  <p className="text-sm text-slate-600">Recurring monthly subscription</p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Everything in Deck Mate</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Access to premium guides</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Monthly DIY video tutorials</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Expert Q&A sessions</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Priority email support</span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => handleMembershipSelect('Officer Level')}
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-xl transition-all shadow-lg"
+                >
+                  Start Officer Level
+                </button>
+              </div>
+
+              {/* Captain - Premium */}
+              <div className="border-2 border-yellow-500 rounded-2xl p-6 bg-gradient-to-b from-yellow-50 to-white hover:shadow-2xl transition-all">
+                <div className="text-center mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mb-4">
+                    <Crown className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-800 mb-2">Captain</h3>
+                  <div className="mb-2">
+                    <span className="text-4xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-700 bg-clip-text text-transparent">$49.99</span>
+                    <span className="text-slate-600">/month</span>
+                  </div>
+                  <p className="text-sm text-slate-600">Complete All-Access Pass</p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700 font-semibold">Everything in Officer Level</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Complete guide library access</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Unlimited DIY tutorials</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Private community access</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">1-on-1 consultation calls</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Early access to new content</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-slate-700">Downloadable checklists & templates</span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => handleMembershipSelect('Captain')}
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg"
+                >
+                  Become a Captain
+                </button>
+              </div>
+            </div>
+
+            {/* Footer Note */}
+            <div className="px-8 pb-8 text-center">
+              <p className="text-sm text-slate-600">
+                💳 All paid plans include a 7-day money-back guarantee. Cancel anytime.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Get Your FREE 2025 Yacht Winterization Guide | Boat Pro</title>
+  <meta name="description" content="Download Boat Pro's 2025 Complete Yacht Winterization Guide. Pro checklists and step-by-step procedures for power & sail." />
+
+  <style>
+    :root {
+      --navy: #0a2342;
+      --gold: #d4af37;
+      --white: #ffffff;
+      --ink: var(--navy);
+      --bg: var(--white);
+      --primary: var(--navy);
+      --accent: var(--gold);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    a { color: inherit; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 16px; }
+
+    header { background-color: var(--navy); color: var(--white); }
+
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; }
+
+    .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .brand img { height: 50px; width: auto; }
+    .brand span { font-weight: 800; letter-spacing: .5px; font-size: 1.25rem; color: var(--gold); }
+
+    .tagline { font-weight: 700; font-size: 1rem; letter-spacing: .3px; color: var(--gold); }
+
+    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; padding: 48px 0; }
+
+    .badge { display: inline-block; background: var(--gold); color: var(--navy); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: .9rem; margin-bottom: 12px; }
+
+    h1 { font-size: clamp(1.9rem, 3.6vw, 3rem); line-height: 1.1; margin: .25rem 0 1rem; color: var(--navy); }
+
+    .sub { font-size: 1.1rem; margin: 0 0 1rem; color: #1e293b; }
+
+    .warn { display: inline-block; background: rgba(212,175,55,0.1); color: var(--gold); border: 1px solid var(--gold); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: .9rem; margin: 8px 0 0; }
+
+    .card { background: var(--white); padding: 24px; border-radius: 16px; border: 2px solid var(--gold); box-shadow: 0 12px 30px rgba(10,35,66,.08); }
+
+    label { display: block; font-weight: 700; color: var(--navy); margin: 6px 0; }
+    input { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; }
+    input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.25); }
+
+    .btn { display: inline-block; width: 100%; padding: 16px 18px; border: 0; border-radius: 12px; font-size: 1.05rem; font-weight: 900; letter-spacing: .4px; color: var(--navy); background: var(--gold); text-decoration: none; box-shadow: 0 8px 20px rgba(212,175,55,.4); cursor: pointer; }
+    .btn:hover { background: #e0c05c; }
+
+    .trust { margin-top: 10px; color: var(--navy); font-size: .9rem; text-align: center; }
+
+    .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+    .benefit { background: var(--white); border: 1px solid var(--gold); border-radius: 12px; padding: 16px; }
+    .benefit h3 { margin: 6px 0; color: var(--navy); font-size: 1rem; }
+
+    footer { margin-top: 40px; padding: 24px 0; border-top: 2px solid var(--gold); color: var(--navy); text-align: center; }
+
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .tagline { display: none; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap header-inner">
+      <a class="brand" href="#">
+        <img src="boat pro logo.png" alt="Boat Pro Logo" />
+        <span>BOAT PRO</span>
+      </a>
+      <div class="tagline">Resources, Knowledge and Entertainment</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="badge">Winter 2025 Season</span>
+        <h1>Get Your FREE <span style="color:var(--gold)">Yacht Winterization Guide</span></h1>
+        <p class="sub">Professional checklists and step-by-step procedures for power & sail vessels up to 100 feet.</p>
+        <p class="sub">Protect engines, water systems, HVAC, and electrical — and avoid costly freeze damage.</p>
+        <span class="warn">Prevent $10,000+ in freeze damage</span>
+
+        <div class="benefits">
+          <div class="benefit"><strong>✅ Engines</strong><h3>Raw water & block protection</h3></div>
+          <div class="benefit"><strong>✅ Systems</strong><h3>Plumbing, fuel & electrical</h3></div>
+          <div class="benefit"><strong>✅ Interior</strong><h3>Mold & moisture prevention</h3></div>
+          <div class="benefit"><strong>✅ Spring</strong><h3>Commissioning checklist</h3></div>
+        </div>
+      </div>
+
+      <div class="card" aria-labelledby="leadTitle">
+        <h2 id="leadTitle" style="margin:0 0 10px;color:var(--navy)">Download the Guide</h2>
+        <p style="margin:0 0 14px;color:var(--navy)">Enter your details to get instant access.</p>
+
+        <!--
+          AUTOMATION WORKFLOW: Immediate Download on Submit
+          1) Replace GUIDE_URL_HERE with the hosted file URL from Mailchimp Content Studio.
+          2) This page will:
+             - Open the guide in a new tab immediately on submit (JS fallback)
+             - Redirect the Mailchimp success page to the guide (hidden redirect field)
+        -->
+        <form id="leadForm" action="https://YOUR-DOMAIN.us1.list-manage.com/subscribe/post?u=YOUR_USER_ID&amp;id=YOUR_LIST_ID" method="post" target="_blank" novalidate>
+          <input type="hidden" id="guideUrl" value="GUIDE_URL_HERE" />
+          <!-- Mailchimp-compatible redirect to your hosted file URL (fires after successful opt-in) -->
+          <input type="hidden" name="redirect" value="GUIDE_URL_HERE" />
+
+          <label for="mce-FNAME">First name</label>
+          <input type="text" name="FNAME" id="mce-FNAME" placeholder="Jane" required />
+
+          <label for="mce-EMAIL" style="margin-top:12px">Email</label>
+          <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="you@example.com" required />
+
+          <!-- Bot honeypot required by Mailchimp -->
+          <div style="position:absolute;left:-5000px" aria-hidden="true">
+            <input type="text" name="b_YOUR_USER_ID_YOUR_LIST_ID" tabindex="-1" value="">
+          </div>
+
+          <button type="submit" name="subscribe" class="btn">DOWN LOAD WINTERIZATION GUIDE</button>
+          <div class="trust">🔒 100% secure. Unsubscribe anytime.</div>
+        </form>
+        <p style="margin:14px 0 0;font-size:.9rem;color:var(--navy)">Tip: In Mailchimp, also set your <em>Signup Thank You Page</em> to the same file URL. That ensures delivery even if pop‑ups are blocked.</p>
+        <noscript>
+          <p style="color:var(--navy);font-size:.9rem;">JavaScript is disabled. After you subscribe, you'll be redirected to the download automatically.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:12px">
+      <h2 style="margin:0 0 8px;color:var(--navy)">What You'll Learn</h2>
+      <ul style="margin:0;padding-left:18px;color:var(--navy);line-height:1.9">
+        <li>Exact antifreeze routing for engines, gensets, and HVAC loops</li>
+        <li>Freshwater & holding tank winterization without damage</li>
+        <li>Battery care and off-season electrical best practices</li>
+        <li>Spring commissioning steps to launch faster</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div>© 2025 Boat Pro • Practical information for power & sailboat enthusiasts</div>
+    </footer>
+  </main>
+
+  <script>
+    // Immediate download on submit (opens the guide in a new tab instantly)
+    (function() {
+      var form = document.getElementById('leadForm');
+      var guide = document.getElementById('guideUrl').value;
+      form.addEventListener('submit', function() {
+        if (guide && /^https?:\/\//i.test(guide)) {
+          // slight delay to avoid popup blockers in some browsers
+          setTimeout(function(){ window.open(guide, '_blank'); }, 200);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
