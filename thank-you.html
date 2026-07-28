@@ -1,449 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You! Your Boat Show Guide is Ready</title>
-    <meta name="description" content="Success! Your FREE Annapolis Boat Show Guide is ready to download.">
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #1a365d;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-        
-        .thank-you-container {
-            background: white;
-            border-radius: 1.5rem;
-            padding: 3rem;
-            max-width: 700px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            animation: slideUp 0.5s ease;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .success-icon {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            animation: bounce 1s ease infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        h1 {
-            color: #1e40af;
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            margin-bottom: 1rem;
-        }
-        
-        .user-name {
-            color: #f59e0b;
-        }
-        
-        .subtitle {
-            font-size: 1.25rem;
-            color: #64748b;
-            margin-bottom: 2rem;
-        }
-        
-        .steps {
-            background: #f8fafc;
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: left;
-        }
-        
-        .steps h3 {
-            color: #1e40af;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.25rem;
-        }
-        
-        .step:last-child {
-            margin-bottom: 0;
-        }
-        
-        .step-number {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-right: 1rem;
-        }
-        
-        .step-content {
-            flex: 1;
-        }
-        
-        .step-content strong {
-            color: #1e40af;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 1.25rem 3rem;
-            border-radius: 3rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-decoration: none;
-            margin: 2rem 0;
-            transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
-        }
-        
-        .bonus-section {
-            background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 100%);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .bonus-section h3 {
-            color: #92400e;
-            margin-bottom: 1rem;
-        }
-        
-        .bonus-section p {
-            color: #78350f;
-        }
-        
-        .social-share {
-            margin: 2rem 0;
-        }
-        
-        .social-share h3 {
-            color: #1e40af;
-            margin-bottom: 1rem;
-        }
-        
-        .share-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .share-btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            color: white;
-            transition: all 0.3s;
-        }
-        
-        .share-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        .facebook { background: #1877f2; }
-        .twitter { background: #1da1f2; }
-        .linkedin { background: #0077b5; }
-        .email-share { background: #64748b; }
-        
-        .email-info {
-            background: #eff6ff;
-            border: 2px solid #3b82f6;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .email-info strong {
-            color: #1e40af;
-        }
-        
-        .countdown {
-            background: #fef2f2;
-            border: 2px solid #ef4444;
-            border-radius: 1rem;
-            padding: 1rem;
-            margin: 1rem 0;
-            color: #991b1b;
-            font-weight: 600;
-        }
-        
-        .countdown-timer {
-            font-size: 2rem;
-            color: #dc2626;
-            margin-top: 0.5rem;
-        }
-        
-        @media (max-width: 768px) {
-            .thank-you-container {
-                padding: 2rem 1.5rem;
-            }
-            
-            .share-buttons {
-                flex-direction: column;
-            }
-            
-            .share-btn {
-                width: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | 2026 Annapolis Boat Shows Guide | Boat Pro USA</title>
+  <meta name="description" content="Your free 2026 Annapolis Boat Shows Do's & Don'ts Guide is on the way from Boat Pro USA. Check your email for your download link.">
+  <link rel="canonical" href="https://BoatProUSA.com/thank-you.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://BoatProUSA.com/thank-you.html">
+  <meta property="og:site_name" content="Boat Pro USA">
+  <meta property="og:title" content="Thank You | 2026 Annapolis Boat Shows Guide">
+  <meta property="og:description" content="Your free 2026 Annapolis Boat Shows Do's & Don'ts Guide is on the way.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Thank You | 2026 Annapolis Boat Shows Guide">
+  <meta name="twitter:description" content="Your free Boat Pro USA guide is on the way.">
+  <style>
+    :root {
+      --navy: #071c33;
+      --navy-2: #0d3155;
+      --gold: #e3ad3a;
+      --gold-light: #f8db8a;
+      --red: #b52b32;
+      --white: #fff;
+      --ink: #172638;
+      --muted: #5b6775;
+      --surface: #f4f7fa;
+      --line: #d8e0e8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--navy-2); }
+    a:focus-visible, .button:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+    .site-header { background: var(--navy); border-bottom: 4px solid var(--gold); }
+    .navbar, .container { width: min(1120px, calc(100% - 32px)); margin: auto; }
+    .nav-container {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .logo-mark { width: 58px; height: 46px; flex: none; }
+    .logo-text { font-size: 1.2rem; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .nav-link { color: var(--white); text-decoration: none; font-weight: 700; }
+    .nav-link:hover { color: var(--gold-light); }
+    .thank-you-hero {
+      padding: 56px 16px 72px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(227,173,58,.22), transparent 34rem),
+        linear-gradient(150deg, #071c33 0%, #0d3155 48%, #071c33 100%);
+    }
+    .thank-you-content {
+      width: min(840px, 100%);
+      margin: auto;
+      padding: clamp(24px, 5vw, 48px);
+      background: var(--white);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 22px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.28);
+      text-align: center;
+    }
+    .success-icon {
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 18px;
+      color: var(--white);
+      background: #24784a;
+      border-radius: 50%;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    h1 { margin: 0; color: var(--navy); font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.12; }
+    h2 { color: var(--navy); line-height: 1.25; }
+    .subtitle { font-size: 1.15rem; color: var(--muted); }
+    .guide-cover {
+      width: min(340px, 90%);
+      margin: 28px auto;
+      padding: 26px 22px;
+      color: var(--white);
+      background: linear-gradient(150deg, var(--navy) 0 68%, var(--red) 68%);
+      border: 6px solid var(--gold);
+      border-radius: 8px;
+      box-shadow: 0 16px 28px rgba(7,28,51,.25);
+      text-align: left;
+    }
+    .guide-cover .year { color: var(--gold-light); font-size: 2rem; font-weight: 900; }
+    .guide-cover .cover-title { margin: 4px 0 14px; font-size: 1.55rem; font-weight: 900; line-height: 1.1; }
+    .guide-cover .boat-line { width: 100%; height: auto; display: block; margin: 16px 0; }
+    .guide-cover .brand { font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .next-steps, .member-preview {
+      margin: 30px 0;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfcfd;
+      text-align: left;
+    }
+    .next-steps h2, .member-preview h2 { margin-top: 0; }
+    .next-steps li, .member-preview li { margin: 10px 0; }
+    .guide-actions, .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .button, .share-btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .button:hover, .share-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+    .primary { color: var(--navy); background: var(--gold); }
+    .secondary { color: var(--navy); border: 2px solid var(--navy); background: var(--white); }
+    .share-btn { color: var(--white); background: var(--navy-2); }
+    .member-preview { border-left: 6px solid var(--gold); }
+    .fine-print, .support-note { color: var(--muted); font-size: .94rem; }
+    .footer { padding: 44px 0 24px; color: #e8eef5; background: #041321; }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 32px;
+    }
+    .footer h2 { color: var(--gold-light); font-size: 1.08rem; }
+    .footer a { color: var(--white); }
+    .footer ul { padding-left: 18px; }
+    .footer-bottom {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.2);
+      text-align: center;
+    }
+    @media (max-width: 700px) {
+      .nav-container { padding: 14px 0; align-items: flex-start; }
+      .nav-links { justify-content: flex-end; gap: 10px 14px; }
+      .thank-you-hero { padding: 28px 12px 44px; }
+      .footer-content { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .nav-container { display: block; }
+      .nav-links { margin-top: 12px; justify-content: flex-start; }
+      .button, .share-btn { width: 100%; }
+    }
+  </style>
 </head>
 <body>
-    <div class="thank-you-container">
-        <div class="success-icon">??</div>
-        
-        <h1>Success, <span class="user-name" id="userName">Friend</span>!</h1>
-        <p class="subtitle">Your FREE Boat Show Guide is Ready</p>
-        
-        <div class="email-info">
-            <p>?? We've sent your guide to <strong id="userEmail">your email</strong></p>
-            <p style="margin-top: 0.5rem; font-size: 0.875rem; color: #64748b;">Check your inbox (and spam folder) in the next few minutes</p>
-        </div>
-        
-        <a href="index.html" class="download-btn" target="_blank">
-            ?? Download Guide Now
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="nav-container">
+        <a class="nav-logo" href="https://BoatProUSA.com/" aria-label="Boat Pro USA home">
+          <svg class="logo-mark" viewBox="0 0 116 92" role="img" aria-label="Boat Pro USA logo">
+            <path d="M12 56h92L88 76H31Z" fill="#fff"/>
+            <path d="M39 52V22h31l20 30Z" fill="#e3ad3a"/>
+            <path d="M46 45V29h18l11 16Z" fill="#071c33"/>
+            <path d="M8 81c15-8 28 8 43 0s28 8 43 0 20 0 20 0" fill="none" stroke="#e3ad3a" stroke-width="7"/>
+          </svg>
+          <span class="logo-text">Boat Pro USA</span>
         </a>
-        
-        <div class="steps">
-            <h3>What's Next?</h3>
-            
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <strong>Check Your Email</strong><br>
-                    Your guide should arrive within 2-5 minutes. Add us to contacts so you don't miss future updates.
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <strong>Review the Guide</strong><br>
-                    8 pages of insider tips, dining recommendations, and professional strategies.
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <strong>Plan Your Visit</strong><br>
-                    Mark your calendar: Powerboat Show (Oct 2-5) | Sailboat Show (Oct 9-12)
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <strong>Book Accommodations</strong><br>
-                    Hotels fill up fast! Use our recommendations to secure the best locations.
-                </div>
-            </div>
+        <div class="nav-links">
+          <a href="https://BoatProUSA.com/" class="nav-link">Home</a>
+          <a href="https://BoatProUSA.com/guides.html" class="nav-link">Guides</a>
+          <a href="https://BoatProUSA.com/members.html" class="nav-link premium">Membership</a>
         </div>
-        
-        <div class="bonus-section">
-            <h3>?? BONUS: Exclusive Show Updates</h3>
-            <p>You're now subscribed to receive insider updates, last-minute deals, and exclusive boat show announcements. Stay tuned!</p>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="thank-you-hero">
+      <div class="thank-you-content">
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <h1>Thank you, <span class="user-name">Friend</span>!</h1>
+        <p class="subtitle">Your free <strong>2026 Annapolis Boat Shows — Do's &amp; Don'ts Guide</strong> is on its way.</p>
+
+        <div class="guide-cover" role="img" aria-label="Cover of the 2026 Annapolis Boat Shows Do's and Don'ts Guide">
+          <div class="year">2026</div>
+          <div class="cover-title">ANNAPOLIS BOAT SHOWS<br>DO'S &amp; DON'TS GUIDE</div>
+          <svg class="boat-line" viewBox="0 0 500 150" aria-hidden="true">
+            <path d="M32 97h414l-64 37H100Z" fill="#fff"/>
+            <path d="M160 88V22h122l92 66Z" fill="#e3ad3a"/>
+            <path d="M177 74V36h91l55 38Z" fill="#071c33"/>
+            <path d="M20 142c50-22 92 22 142 0s92 22 142 0 92 22 142 0" fill="none" stroke="#e3ad3a" stroke-width="10"/>
+          </svg>
+          <div class="brand">Boat Pro USA</div>
         </div>
-        
-        <div class="countdown">
-            ? <strong>Limited Time:</strong> Early bird tickets available
-            <div class="countdown-timer" id="countdown">Loading...</div>
+
+        <div class="next-steps">
+          <h2>What happens next?</h2>
+          <ol>
+            <li><strong>Check your email</strong> in the next few minutes.</li>
+            <li><strong>Open the message from Boat Pro USA</strong> and use the guide link.</li>
+            <li><strong>Check Spam or Promotions</strong> if you do not see it.</li>
+            <li><strong>Add Info@BoatProUSA.com to your contacts</strong> so future boating tips reach you.</li>
+          </ol>
         </div>
-        
+
+        <div class="guide-actions">
+          <a href="https://BoatProUSA.com/guides.html" class="button primary">Explore Boat Pro Guides</a>
+          <a href="https://BoatProUSA.com/" class="button secondary">Return Home</a>
+        </div>
+
+        <div class="member-preview">
+          <h2>Get more practical boating help</h2>
+          <p>Boat Pro USA membership adds step-by-step DIY resources and ongoing guidance.</p>
+          <ul>
+            <li><strong>DIY — $19.99/month:</strong> Monthly newsletter and access to DIY tutorials.</li>
+            <li><strong>Complete — $24.99/month:</strong> DIY tutorials, archived newsletters, all guides, and weekly topic emails.</li>
+          </ul>
+          <a href="https://BoatProUSA.com/members.html" class="button primary">Compare Membership Options</a>
+          <p class="fine-print">Cancel anytime. Access continues through the end of the current billing period.</p>
+        </div>
+
         <div class="social-share">
-            <h3>Help Fellow Boaters!</h3>
-            <p style="margin-bottom: 1rem; color: #64748b;">Share this guide with friends planning to attend</p>
-            
-            <div class="share-buttons">
-                <a href="#" class="share-btn facebook" onclick="shareOnFacebook(event)">
-                    Share on Facebook
-                </a>
-                <a href="#" class="share-btn twitter" onclick="shareOnTwitter(event)">
-                    Share on Twitter
-                </a>
-                <a href="#" class="share-btn linkedin" onclick="shareOnLinkedIn(event)">
-                    Share on LinkedIn
-                </a>
-                <a href="#" class="share-btn email-share" onclick="shareViaEmail(event)">
-                    Share via Email
-                </a>
-            </div>
+          <h2>Share Boat Pro USA with another boater</h2>
+          <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2FBoatProUSA.com%2F" target="_blank" rel="noopener noreferrer" class="share-btn facebook">Share on Facebook</a>
+            <a href="https://twitter.com/intent/tweet?text=Get%20the%20free%202026%20Annapolis%20Boat%20Shows%20Guide%20from%20Boat%20Pro%20USA&url=https%3A%2F%2FBoatProUSA.com%2F" target="_blank" rel="noopener noreferrer" class="share-btn twitter">Share on X</a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FBoatProUSA.com%2F" target="_blank" rel="noopener noreferrer" class="share-btn linkedin">Share on LinkedIn</a>
+          </div>
         </div>
-        
-        <p style="margin-top: 2rem; color: #94a3b8; font-size: 0.875rem;">
-            Questions? Email us at <a href="mailto:info@annapolisboatshow.guide" style="color: #3b82f6;">info@annapolisboatshow.guide</a>
+
+        <p class="support-note">
+          Need help? Email <a href="mailto:Info@BoatProUSA.com">Info@BoatProUSA.com</a>.
         </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h2>Boat Pro USA</h2>
+          <p>Created by boaters for boaters and marine-industry insiders.</p>
+        </div>
+        <div class="footer-section">
+          <h2>Quick Links</h2>
+          <ul>
+            <li><a href="https://BoatProUSA.com/">Home</a></li>
+            <li><a href="https://BoatProUSA.com/guides.html">Guides</a></li>
+            <li><a href="https://BoatProUSA.com/members.html">Membership</a></li>
+            <li><a href="https://BoatProUSA.com/privacy.html">Privacy Policy</a></li>
+            <li><a href="https://BoatProUSA.com/terms.html">Terms of Service</a></li>
+            <li><a href="https://BoatProUSA.com/refund-policy.html">Refund Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h2>Contact</h2>
+          <p><a href="mailto:Info@BoatProUSA.com">Info@BoatProUSA.com</a></p>
+          <p>650 Americana Drive, Annapolis, MD 21403</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Boat Pro USA. All rights reserved.</p>
+      </div>
     </div>
-    
-    <script>
-        // ============================================
-        // PERSONALIZATION
-        // ============================================
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get stored user data
-            const userName = localStorage.getItem('userName') || 'Friend';
-            const userEmail = localStorage.getItem('userEmail') || 'your email';
-            
-            // Update page with user info
-            document.getElementById('userName').textContent = userName.split(' ')[0];
-            document.getElementById('userEmail').textContent = userEmail;
-            
-            // Start countdown
-            startCountdown();
-            
-            // Track page view
-            trackThankYouVisit(userName, userEmail);
-        });
-        
-        // ============================================
-        // COUNTDOWN TIMER
-        // ============================================
-        function startCountdown() {
-            // Set target date (October 2, 2025)
-            const targetDate = new Date('2025-10-02T10:00:00').getTime();
-            
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
-                
-                if (distance < 0) {
-                    document.getElementById('countdown').textContent = 'Show is Live!';
-                    return;
-                }
-                
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                
-                document.getElementById('countdown').textContent = 
-                    `${days}d ${hours}h ${minutes}m until show starts!`;
-            }
-            
-            updateCountdown();
-            setInterval(updateCountdown, 60000); // Update every minute
-        }
-        
-        // ============================================
-        // SOCIAL SHARING
-        // ============================================
-        const shareURL = window.location.origin + '/landing.html';
-        const shareText = 'Check out this FREE Annapolis Boat Show Guide with insider tips and local dining secrets!';
-        
-        function shareOnFacebook(event) {
-            event.preventDefault();
-            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}`;
-            window.open(url, '_blank', 'width=600,height=400');
-            trackShare('Facebook');
-        }
-        
-        function shareOnTwitter(event) {
-            event.preventDefault();
-            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareURL)}`;
-            window.open(url, '_blank', 'width=600,height=400');
-            trackShare('Twitter');
-        }
-        
-        function shareOnLinkedIn(event) {
-            event.preventDefault();
-            const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareURL)}`;
-            window.open(url, '_blank', 'width=600,height=400');
-            trackShare('LinkedIn');
-        }
-        
-        function shareViaEmail(event) {
-            event.preventDefault();
-            const subject = encodeURIComponent('FREE Annapolis Boat Show Guide');
-            const body = encodeURIComponent(`${shareText}\n\n${shareURL}`);
-            window.location.href = `mailto:?subject=${subject}&body=${body}`;
-            trackShare('Email');
-        }
-        
-        // ============================================
-        // ANALYTICS TRACKING
-        // ============================================
-        function trackThankYouVisit(name, email) {
-            // Google Analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'thank_you_page_view', {
-                    event_category: 'Conversion',
-                    event_label: 'Guide Downloaded',
-                    user_name: name,
-                    user_email: email
-                });
-            }
-            
-            // Facebook Pixel
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'CompleteRegistration', {
-                    content_name: 'Boat Show Guide',
-                    status: 'completed'
-                });
-            }
-        }
-        
-        function trackShare(platform) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'share', {
-                    method: platform,
-                    content_type: 'guide',
-                    item_id: 'boat_show_guide_2025'
-                });
-            }
-        }
-        
-        // ============================================
-        // AUTO-DOWNLOAD (Optional)
-        // ============================================
-        // Uncomment to automatically trigger download
-        // setTimeout(() => {
-        //     window.open('index.html', '_blank');
-        // }, 2000);
-    </script>
+  </footer>
+
+  <script src="/assets/thank-you.js"></script>
 </body>
 </html>
